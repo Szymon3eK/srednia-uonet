@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Srenia Uonet+",
+  "version": "1.0",
+  "description": "Liczy srednia w serwisie Uonet+",
+  "permissions": ["tabs", "storage", "activeTab"],
+  "content_scripts": [
+    {
+      "js": ["./scripts/liczenie.js"],
+      "matches": ["https://uonetplus-uczen.vulcan.net.pl/*/*/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "extension.html"
+  }
+}
