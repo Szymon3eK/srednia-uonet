@@ -4,12 +4,18 @@
   "version": "1.0",
   "description": "Liczy srednia w serwisie Uonet+",
   "permissions": ["tabs", "storage", "activeTab"],
+  
   "content_scripts": [
     {
       "js": ["./scripts/liczenie.js"],
       "matches": ["https://uonetplus-uczen.vulcan.net.pl/*/*/*"]
     }
   ],
+  "icons": {
+    "16": "img/16.png",
+    "48": "img/48.png",
+    "128": "img/128.png"
+  },
   "action": {
     "default_popup": "extension.html"
   }

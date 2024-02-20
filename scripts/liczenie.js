@@ -24,14 +24,14 @@ mutationObserver.observe(document, { childList: true, subtree: true });
 const addingButtonEvent = () => {
 	document.querySelectorAll('button').forEach((t) => {
 		t.addEventListener('click', () => {
-			setTimeout(adding, 1000);
+			mutationObserver.observe(document, { childList: true, subtree: true });
 		});
 	});
 }
 
 
 const adding = () => {
-	console.log('adding()');
+	console.log('[!] srednia uonet - dodawanie srednich');
 	if(!document.querySelector("#ext-element-176")) return console.warn('nie jestes na stronie z ocenami!');
 
 	let el = document.querySelectorAll(
@@ -88,7 +88,7 @@ const adding = () => {
 		let srednia = (allMarksSum / allDevideSum).toFixed(2);
 
 		if (!isNaN(srednia))
-			e.innerHTML += `<h4 class = "podliczona-srednia" style = "color: #809d2e; float: right; margin-right: 30px">${srednia}</h4>`;
+			if(!e.querySelector('.podliczona-srednia')) e.innerHTML += `<h4 class = "podliczona-srednia" style = "color: #809d2e; float: right; margin-right: 30px">${srednia}</h4>`;
 	});
 
 	// SREDNIA WAZONA OCEN
