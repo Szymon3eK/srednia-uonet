@@ -1,24 +1,43 @@
-console.log('Licze srednia...');
+console.log('[+] srednia uonet - wlaczono');
 
-window.addEventListener('load', function() {
-	setTimeout(() => {
-		adding();
-	}, 1500);
+let mutationObserver = new MutationObserver(function(mutations) {
+	let okresdiv = document.querySelector("#ext-element-1613")
+
+	if (okresdiv) {
+		let ob = new IntersectionObserver(function(entries) {
+				if (entries[0].isIntersecting === true) {
+					adding();
+					addingButtonEvent();
+				}
+		},
+			{ threshold: [ 0 ] }
+		);
+
+		ob.observe(okresdiv);
+
+		mutationObserver.disconnect();
+	}
 });
 
-let buttons = document.querySelectorAll('button');
+mutationObserver.observe(document, { childList: true, subtree: true });
 
-buttons.forEach((b) => {
-	b.addEventListener('click', setTimeout(adding, 1500));
-});
+const addingButtonEvent = () => {
+	document.querySelectorAll('button').forEach((t) => {
+		t.addEventListener('click', () => {
+			setTimeout(adding, 1000);
+		});
+	});
+}
 
-function adding() {
+
+const adding = () => {
 	console.log('adding()');
-	//if (!ocenyczesciowebutton) return;
+	if(!document.querySelector("#ext-element-176")) return console.warn('nie jestes na stronie z ocenami!');
 
 	let el = document.querySelectorAll(
 		'.x-dataitem.x-container.x-component.x-item-no-tap.x-layout-auto-item > div > div > div > div.x-body-wrap-el > .x-body-el > .x-innerhtml'
 	);
+
 
 	if (el.length == 0) return;
 
@@ -88,5 +107,5 @@ function adding() {
 
 	sum = (sum / policzone.length).toFixed(2);
 
-	div.innerHTML += `<h3 style = "margin-left: 10%; color: yellow">${sum} <span style = "color: gray">(Podliczono z ${policzone.length} / ${wszystkie.length})</span></h3>`;
+	if(!document.querySelector("#ext-element-172").textContent.includes('Podliczono')) div.innerHTML += `<h3 style = "margin-left: 10%; color: yellow">${sum} <span style = "color: gray">(Podliczono z ${policzone.length} / ${wszystkie.length})</span></h3>`;
 }
