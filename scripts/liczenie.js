@@ -31,8 +31,7 @@ const addingButtonEvent = () => {
 
 
 const adding = () => {
-	console.log('[!] srednia uonet - dodawanie srednich');
-	if(!document.querySelector("#ext-element-176")) return console.warn('nie jestes na stronie z ocenami!');
+	console.log('[!] srednia uonet - dodawanie srednich')
 
 	let el = document.querySelectorAll(
 		'.x-dataitem.x-container.x-component.x-item-no-tap.x-layout-auto-item > div > div > div > div.x-body-wrap-el > .x-body-el > .x-innerhtml'
@@ -93,7 +92,6 @@ const adding = () => {
 
 	// SREDNIA WAZONA OCEN
 
-	let div = document.querySelector('#ext-element-172');
 	let policzone = document.querySelectorAll('.podliczona-srednia');
 	let wszystkie = document.querySelectorAll(
 		'.x-dataitem.x-container.x-component.x-item-no-tap.x-layout-auto-item > div > div > div > label > span'
@@ -107,5 +105,7 @@ const adding = () => {
 
 	sum = (sum / policzone.length).toFixed(2);
 
-	if(!document.querySelector("#ext-element-172").textContent.includes('Podliczono')) div.innerHTML += `<h3 style = "margin-left: 10%; color: yellow">${sum} <span style = "color: gray">(Podliczono z ${policzone.length} / ${wszystkie.length})</span></h3>`;
+	if(!document.querySelector("#ext-element-167").textContent.includes('Podliczono')) {
+		document.querySelector("#ext-element-167").innerHTML += `<br/><label style = 'color: gold; font-size: 20px;'>${sum} <span style = "color: gray">(Podliczono z ${policzone.length} / ${wszystkie.length})</span></label>`
+	}
 }
